@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BastaPrint Services</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
   <style>
     /* Offset anchor scroll position for fixed navbar */
     html {
@@ -51,7 +53,10 @@
     .hero-content {
         z-index: 2;
     }
-    
+    /* Hide mobile image on desktop */
+    .mobile-only {
+    display: none;
+    }
     /* About Section */
     #about {
         background: linear-gradient(to right, #fffaf0, #ffffff);
@@ -70,6 +75,11 @@
     }
     .service-card {
         transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: none;
+        background: #fff;
+        border-radius: 15px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
     }
     .service-card:hover {
         transform: translateY(-8px);
@@ -88,17 +98,38 @@
     section:nth-of-type(even) {
       background-color: #f7f4f9;
     }
-
-    /* Services */
-    .service-card {
-      border: none;
-      background: #fff;
-      border-radius: 15px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      transition: all 0.3s ease;
+    /* Portfolio Image Container */
+    .portfolio-img-wrapper {
+    height: 220px; /* Adjust height as needed */
+    overflow: hidden; /* Crop overflow */
+    border-bottom: 1px solid #ddd; /* Optional: subtle separation */
     }
-    .service-card:hover {
-      transform: translateY(-5px);
+
+    .portfolio-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Fill container without distortion */
+    transition: transform 0.3s ease;
+    }
+
+    /* Hover Zoom Effect */
+    .portfolio-img-wrapper img:hover {
+    transform: scale(1.05);
+    }
+
+    /* Card Body Styling */
+    .portfolio-item .card-body {
+    padding: 1rem;
+    }
+
+    .portfolio-item .card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    }
+
+    .portfolio-item .card-text {
+    font-size: 0.9rem;
+    color: #555;
     }
 
     /* Buttons */
@@ -151,7 +182,16 @@
     @media (max-width: 768px) {
     .hero-content h1 { font-size: 2rem; }
     .hero-content p { font-size: 1rem; }
-  }
+    }
+    /* Hide desktop image on mobile */
+    @media (max-width: 768px) {
+    .desktop-only {
+        display: none;
+    }
+    .mobile-only {
+        display: block;
+    }
+    }
   </style>
 </head>
 <body>
@@ -180,7 +220,11 @@
 
 <!-- Hero Section -->
 <section id="hero" class="position-relative text-center text-white d-flex flex-column justify-content-center align-items-center">
-  <img src="coverphoto.jpg" alt="BastaPrint cover photo" class="hero-image">
+  <!-- Desktop Cover Photo -->
+  <img src="coverphoto.jpg" alt="BastaPrint cover photo" class="hero-image desktop-only">
+  <!-- Mobile Cover Photo -->
+  <img src="coverphoto-mobile.jpg" alt="BastaPrint mobile cover photo" class="hero-image mobile-only">
+  
   <div class="hero-overlay"></div>
   <div class="hero-content position-absolute px-3">
     <h1 class="display-3 fw-bold">Your One-Stop Printing Solution</h1>
@@ -188,6 +232,7 @@
     <a href="#services" class="btn btn-warning btn-lg px-4">Explore Services</a>
   </div>
 </section>
+
 
 <!-- ABOUT SECTION -->
 <section id="about" class="py-5 bg-light">
@@ -209,89 +254,167 @@
           We take pride in offering fast, affordable, and professional printing services — from business essentials like
           flyers and calling cards to large-format signages and custom merchandise.
         </p>
-        <a href="#services" class="btn btn-warning mt-3">View Our Services</a>
+        
       </div>
     </div>
   </div>
 </section>
 
-<!-- SERVICES SECTION -->
-<section id="services" class="py-5 bg-white">
+<!-- Services Section -->
+<section id="services" class="py-5 bg-light">
   <div class="container text-center">
-    <h2 class="fw-bold text-warning mb-5">Our Services</h2>
-    <div class="row g-4">
-      
-      <!-- Service 1 -->
-      <div class="col-md-4">
-        <div class="card border-0 shadow-sm h-100 service-card">
-          <div class="card-body">
-            <div class="mb-3">
-              <i class="bi bi-printer-fill display-5 text-warning"></i>
-            </div>
-            <h5 class="card-title fw-bold">Digital & Offset Printing</h5>
-            <p class="card-text">
-              From business cards to brochures — we deliver sharp, vibrant, and high-quality prints fast.
-            </p>
-            <a href="#" class="btn btn-outline-warning mt-3">View Service</a>
-          </div>
-        </div>
-      </div>
+    <h2 class="mb-4 fw-bold">Our Services</h2>
+    <p class="lead mb-4">High-quality printing, design, and related services tailored for your personal and business needs.</p>
 
-      <!-- Service 2 -->
-      <div class="col-md-4">
-        <div class="card border-0 shadow-sm h-100 service-card">
-          <div class="card-body">
-            <div class="mb-3">
-              <i class="bi bi-brush-fill display-5 text-warning"></i>
-            </div>
-            <h5 class="card-title fw-bold">Graphic Design & Branding</h5>
-            <p class="card-text">
-              Eye-catching designs for your brand — logos, posters, menus, and more customized for your needs.
-            </p>
-            <a href="#" class="btn btn-outline-warning mt-3">View Service</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Service 3 -->
-      <div class="col-md-4">
-        <div class="card border-0 shadow-sm h-100 service-card">
-          <div class="card-body">
-            <div class="mb-3">
-              <i class="bi bi-bag-fill display-5 text-warning"></i>
-            </div>
-            <h5 class="card-title fw-bold">Custom Merchandise</h5>
-            <p class="card-text">
-              Personalized t-shirts, mugs, stickers, and giveaways — perfect for gifts or business promotion.
-            </p>
-            <a href="#" class="btn btn-outline-warning mt-3">View Service</a>
-          </div>
-        </div>
-      </div>
-
-    </div>
+    <!-- View Services Button -->
+    <button type="button" class="btn btn-warning btn-lg" data-bs-toggle="modal" data-bs-target="#servicesModal">
+      View Services
+    </button>
   </div>
 </section>
-<!-- Portfolio -->
-<section id="portfolio">
+
+<!-- Services Modal -->
+<div class="modal fade" id="servicesModal" tabindex="-1" aria-labelledby="servicesModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="servicesModalLabel">Our Services</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row text-start">
+          <!-- Printing Services -->
+          <div class="col-md-4 mb-3">
+            <h6 class="fw-bold">Printing</h6>
+            <ul>
+              <li>Photocopy</li>
+              <li>Printing</li>
+              <li>Flyers</li>
+              <li>Posters</li>
+              <li>Invitations</li>
+              <li>Brochure</li>
+              <li>Stickers</li>
+              <li>Catalogs</li>
+              <li>Menus</li>
+              <li>Manuals</li>
+              <li>Labels</li>
+              <li>Envelopes</li>
+              <li>Letterhead</li>
+              <li>Order Slip</li>
+              <li>Office Forms</li>
+              <li>Business Cards</li>
+              <li>Calendars</li>
+              <li>Leaflets</li>
+              <li>RX Pads</li>
+            </ul>
+          </div>
+
+          <!-- Design Services -->
+          <div class="col-md-4 mb-3">
+            <h6 class="fw-bold">Design & Branding</h6>
+            <ul>
+              <li>Logo Design</li>
+              <li>PVC ID</li>
+              <li>ID Lanyard</li>
+              <li>Mug Printing</li>
+              <li>T-shirt Printing</li>
+              <li>Umbrella Printing</li>
+              <li>Frisbee Fan Printing</li>
+              <li>Name Plate</li>
+            </ul>
+
+            <h6 class="fw-bold mt-3">Signage & Boards</h6>
+            <ul>
+              <li>Banners</li>
+              <li>Acrylic Sign</li>
+              <li>Wood Sign</li>
+              <li>Brass Sign</li>
+              <li>Stainless Sign</li>
+              <li>Backlit Film</li>
+              <li>Menu Board</li>
+              <li>Sticker Mounting</li>
+              <li>Vehicle Wraps</li>
+              <li>Neon</li>
+              <li>LED</li>
+              <li>Backdrop</li>
+              <li>Standee</li>
+              <li>Wall Graphics</li>
+              <li>Tarpaulin Printing</li>
+              <li>Panaflex</li>
+            </ul>
+          </div>
+
+          <!-- Binding & Finishing -->
+          <div class="col-md-4 mb-3">
+            <h6 class="fw-bold">Binding & Finishing</h6>
+            <ul>
+              <li>Hard Bind</li>
+              <li>Soft Bind</li>
+              <li>Ring Bind</li>
+              <li>ID Lamination</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Portfolio Section -->
+<section id="portfolio" class="py-5 bg-light">
   <div class="container">
-    <h2 class="section-title">Portfolio</h2>
-    <p class="text-center">(Gallery coming soon)</p>
-  </div>
-</section>
+    <h2 class="text-center mb-5 fw-bold">Our Portfolio</h2>
+    
+    <div class="row g-4 justify-content-center">
+      <!-- Portfolio Item 1 -->
+      <div class="col-lg-4 col-md-6 col-sm-12">
+        <div class="portfolio-item card h-100 shadow-sm text-center">
+          <div class="portfolio-img-wrapper">
+            <img src="1.png" class="card-img-top" alt="Portfolio 1">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Brand Identity Mockup / Stationery Set</h5>
+            <p class="card-text">Brand Identity Mockup – clean layout showing business cards and letterhead design.</p>
+          </div>
+        </div>
+      </div>
 
-<!-- Careers -->
-<section id="careers">
-  <div class="container text-center">
-    <h2 class="section-title">Join Our Team</h2>
-    <div class="career-box">
-      <p>We’re always looking for creative, passionate, and talented individuals to join our growing BastaPrint Services family. 
-      If you’re skilled in design, printing, or digital marketing — we’d love to meet you!</p>
-      <p class="fw-semibold mt-3">📧 Send your resume to: <a href="mailto:bastaprint@gmail.com">bastaprint@gmail.com</a></p>
-      <a href="#contact" class="btn btn-basta mt-3">Apply Now</a>
+      <!-- Portfolio Item 2 -->
+      <div class="col-lg-4 col-md-6 col-sm-12">
+        <div class="portfolio-item card h-100 shadow-sm text-center">
+          <div class="portfolio-img-wrapper">
+            <img src="2.png" class="card-img-top" alt="Portfolio 2">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Book Cover Mockup / Minimalist Book Design</h5>
+            <p class="card-text">Minimalist Book Cover – simple, modern cover design for print or digital use.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Portfolio Item 3 -->
+      <div class="col-lg-4 col-md-6 col-sm-12">
+        <div class="portfolio-item card h-100 shadow-sm text-center">
+          <div class="portfolio-img-wrapper">
+            <img src="3.png" class="card-img-top" alt="Portfolio 3">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">T-Shirt Branding Mockup</h5>
+            <p class="card-text">Showcase your custom logo and artwork on a stylish t-shirt design.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Add more items similarly -->
     </div>
   </div>
 </section>
+
+
 
 <!-- Reviews -->
 <section id="reviews">
@@ -326,7 +449,7 @@
     <h2 class="section-title">Contact Us</h2>
     <div class="text-center">
       <p><strong>Address:</strong> 53A Salvador St., Labangon</p>
-      <p><strong>Email:</strong> <a href="mailto:bastaprint@gmail.com">bastaprint@gmail.com</a></p>
+      <p><strong>Email:</strong> bastaprint@gmail.com</a></p>
       <p><strong>Facebook:</strong> BastaPrint Services</p>
     </div>
   </div>
